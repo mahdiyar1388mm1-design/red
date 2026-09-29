@@ -164,7 +164,13 @@ function StateView({mode, onReset}) {
 }
 
 function StandardDashboard({view}) { return <>
- <div className="context-row"><div><h2>{view==='overview'?'Good morning, Mina.':`${views.find(v=>v.id===view)?.label} performance`}</h2><p>{view==='overview'?"Here's what changed across your product.":'Key signals and opportunities for this period.'}</p></div><div className="context-actions"><button><Download/><span>Export</span></button><button><Share2/><span>Share</span></button><button className="primary"><Plus/><span>Add report</span></button></div></div>
+ <div className="context-row"><div><div className="online-pill"><i/> Live workspace</div><h2>{view==='overview'?'Good morning, Mina.':`${views.find(v=>v.id===view)?.label} performance`}</h2><p>{view==='overview'?"Here's what changed across your product.":'Key signals and opportunities for this period.'}</p></div><div className="context-actions"><button><Download/><span>Export</span></button><button><Share2/><span>Share</span></button><button className="primary"><Plus/><span>Add report</span></button></div></div>
+ {view==='overview'&&<section className="brief-banner">
+   <div className="brief-glow"/><div className="brief-icon"><Sparkles/></div>
+   <div className="brief-copy"><span>AI DAILY BRIEF · SEPTEMBER 28</span><h3>Growth is healthy. <em>Activation is your biggest lever.</em></h3><p>New users are converting faster after the onboarding release, while retention remains stable.</p></div>
+   <div className="brief-stats"><div><small>PRODUCT HEALTH</small><strong>86<span>/100</span></strong></div><div className="health-ring"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="17"/><circle className="progress" cx="21" cy="21" r="17"/></svg><Check/></div></div>
+   <button onClick={()=>document.querySelector('.insight-card')?.scrollIntoView({behavior:'smooth'})}>Read full briefing <ArrowRight/></button>
+ </section>}
  <MetricGrid view={view}/>
  <div className="analysis-grid"><MainChart view={view}/><InsightRail view={view}/></div>
  <div className="bottom-grid"><SourcesTable view={view}/><Funnel view={view}/><LiveFeed/></div>
